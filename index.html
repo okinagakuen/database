@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>翁名学園データベース</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="window main-window">
+    <div class="title-bar">翁名学園データベース</div>
+    
+    <div class="window-body">
+      <div class="toolbar">
+        <button id="btnNew">新規登録</button>
+        <button id="btnLoad">データ読み込み / 更新</button>
+      </div>
+
+      <div class="search-box">
+        <label>キーワード検索：</label>
+        <input type="text" id="searchInput" placeholder="名前や番号で検索">
+        <button id="btnSearch">検索(F)</button>
+      </div>
+
+      <div class="table-container">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th style="width: 80px;">呼称番号</th>
+              <th>名前</th>
+              <th style="width: 60px;">性別</th>
+              <th style="width: 80px;">階級</th>
+              <th>部屋</th>
+              <th>作業工場</th>
+            </tr>
+          </thead>
+          <tbody id="dataBody">
+            <!-- 登録されたデータがここに並びます -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 詳細・編集用ウィンドウ（最初は非表示） -->
+  <div id="detailModal" class="modal hidden">
+    <div class="window dialog-window">
+      <div class="title-bar" id="modalTitle">個人データ詳細</div>
+      <div class="window-body form-body">
+        <div class="form-layout">
+          <div class="form-left">
+            <div class="photo-frame">
+              <img id="photoPreview" src="" alt="">
+            </div>
+            <input type="file" id="photoInput" accept="image/*" style="width: 120px; font-size: 11px;">
+          </div>
+          <div class="form-right">
+            <input type="hidden" id="docId">
+            <div class="form-row">
+              <label>呼称番号</label><input type="number" id="f_kosho" style="width: 80px;" placeholder="例: 429">
+            </div>
+            <div class="form-row">
+              <label>苗字</label><input type="text" id="f_sei" style="width: 100px;">
+              <label>名前</label><input type="text" id="f_mei" style="width: 100px;">
+            </div>
+            <div class="form-row">
+              <label>苗字(かな)</label><input type="text" id="f_seiKana" style="width: 100px;">
+              <label>名前(かな)</label><input type="text" id="f_meiKana" style="width: 100px;">
+            </div>
+            <div class="form-row">
+              <label>性別</label>
+              <select id="f_gender">
+                <option value="男">男</option>
+                <option value="女">女</option>
+                <option value="その他">その他</option>
+              </select>
+              <label>血液型</label>
+              <select id="f_blood">
+                <option value="A型">A型</option>
+                <option value="B型">B型</option>
+                <option value="O型">O型</option>
+                <option value="AB型">AB型</option>
+                <option value="不明">不明</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>生年月日</label><input type="date" id="f_birth">
+              <label>階級</label>
+              <select id="f_rank">
+                <option value="青">青</option>
+                <option value="赤">赤</option>
+                <option value="緑">緑</option>
+                <option value="オレンジ">オレンジ</option>
+                <option value="鼠">鼠</option>
+                <option value="水色">水色</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>身長(cm)</label><input type="number" id="f_height" style="width: 60px;">
+              <label>体重(kg)</label><input type="number" id="f_weight" style="width: 60px;">
+            </div>
+            <div class="form-row">
+              <label>入所期間</label><input type="text" id="f_period" style="width: 200px;" placeholder="例: 2024/04/01 - 2026/03/31">
+            </div>
+            <div class="form-row">
+              <label>部屋</label><input type="text" id="f_room" style="width: 100px;">
+              <label>作業工場</label><input type="text" id="f_factory" style="width: 100px;">
+            </div>
+            <div class="form-row">
+              <label style="vertical-align: top;">賞罰歴</label>
+              <textarea id="f_history" rows="3" style="width: 260px; resize: none;"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="dialog-buttons">
+          <button id="btnSave">保存 / 更新</button>
+          <button id="btnDelete" style="color: red;">削除</button>
+          <button id="btnCancel">キャンセル</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
